@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegularExpressionMatchingTest {
-    private  final  RegularExpressionMatching regex=new RegularExpressionMatching();
+    private  final  RegularExpressionMatching testRegularExpressionMatchingWithPositiveTesting=new RegularExpressionMatching();
     @Test
     public void testExample1() {
         String s = "aa";
         String p = "a";
         boolean expected = false;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }
@@ -20,7 +20,7 @@ public class RegularExpressionMatchingTest {
         String s = "aa";
         String p = "a*";
         boolean expected = true;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }
@@ -30,7 +30,7 @@ public class RegularExpressionMatchingTest {
         String s = "ab";
         String p = ".*";
         boolean expected = true;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }
@@ -40,7 +40,7 @@ public class RegularExpressionMatchingTest {
         String s = "";
         String p = "";
         boolean expected = true;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }
@@ -50,7 +50,7 @@ public class RegularExpressionMatchingTest {
         String s = "";
         String p = "a*";
         boolean expected = true;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }
@@ -60,7 +60,7 @@ public class RegularExpressionMatchingTest {
         String s = "aab";
         String p = "c*a*b";
         boolean expected = true;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }
@@ -70,7 +70,7 @@ public class RegularExpressionMatchingTest {
         String s = "mississippi";
         String p = "mis*is*p*.";
         boolean expected = false;
-        boolean result = regex.isMatch(s, p);
+        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
 
         assertEquals(expected, result);
     }

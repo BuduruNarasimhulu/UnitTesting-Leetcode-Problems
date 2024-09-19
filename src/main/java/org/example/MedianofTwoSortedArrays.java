@@ -3,32 +3,31 @@ package org.example;
 import java.util.Arrays;
 
 public class MedianofTwoSortedArrays {
-        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-            int friestArrayLength=nums1.length;
-            int secondArrayLength=nums2.length;
-            int mergedArray[]=new int[friestArrayLength+secondArrayLength];
+    public double findMedianSortedArrays(int[] firstArray, int[] secondArray) {
+        int firstArrayLength = firstArray.length;
+        int secondArrayLength = secondArray.length;
+        int[] mergedArray= new int[firstArrayLength + secondArrayLength];
 
-            int index=0;
-            for(int i:nums1) {
-                mergedArray[index++]=i;
-            }
-            for(int i:nums2) {
-                mergedArray[index++]=i;
-            }
-
-            for(int i:mergedArray) {
-                System.out.println(i);
-            }
-
-            Arrays.sort(mergedArray);
-            int n= mergedArray.length;
-            if(n%2!=0) {
-                return  mergedArray[n/2];
-
-            }
-            else
-                return (( mergedArray[n / 2 - 1] +  mergedArray[n / 2]) / 2.0);
+        int currentIndex = 0;
+        for (int number : firstArray) {
+            mergedArray[currentIndex++] = number;
         }
+        for (int number : secondArray) {
+            mergedArray[currentIndex++] = number;
+        }
+
+        for (int i : mergedArray) {
+            System.out.println(i);
+        }
+
+        Arrays.sort(mergedArray);
+        int mergedArrayLength = mergedArray.length;
+        if (mergedArrayLength % 2 != 0) {
+            return mergedArray[mergedArrayLength / 2];
+
+        } else
+            return ((mergedArray[mergedArrayLength / 2 - 1] + mergedArray[mergedArrayLength / 2]) / 2.0);
+    }
 
 
 }

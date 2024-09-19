@@ -1,36 +1,36 @@
 package org.example;
 
 public class LongestPalindromicSubstring {
-    public String longestPalindrome(String s) {
-        if (s.length() <= 1) {
-            return s;
+    public String longestPalindrome(String inputString) {
+        if (inputString.length() <= 1) {
+            return inputString;
         }
 
-        int maxLen = 1;
-        String maxStr = s.substring(0, 1);
+        int maxLength = 1;
+        String longestPalindromeSubstring = inputString.substring(0, 1);
 
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i + maxLen; j <= s.length(); j++) {
-                if (j - i > maxLen && isPalindrome(s.substring(i, j))) {
-                    maxLen = j - i;
-                    maxStr = s.substring(i, j);
+        for (int startIndex = 0; startIndex < inputString.length(); startIndex++) {
+            for (int endIndex = startIndex + maxLength; endIndex <= inputString.length(); endIndex++) {
+                if (endIndex - startIndex > maxLength && isPalindrome(inputString.substring(startIndex, endIndex ))) {
+                    maxLength = endIndex - startIndex;
+                    longestPalindromeSubstring = inputString.substring(startIndex, endIndex);
                 }
             }
         }
 
-        return maxStr;
+        return longestPalindromeSubstring;
     }
 
-    private boolean isPalindrome(String str) {
-        int left = 0;
-        int right = str.length() - 1;
+    private boolean isPalindrome(String string) {
+        int leftPointer = 0;
+        int rightPointer = string.length() - 1;
 
-        while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
+        while (leftPointer < rightPointer) {
+            if (string.charAt(leftPointer) != string.charAt(rightPointer)) {
                 return false;
             }
-            left++;
-            right--;
+            leftPointer++;
+            rightPointer--;
         }
 
         return true;

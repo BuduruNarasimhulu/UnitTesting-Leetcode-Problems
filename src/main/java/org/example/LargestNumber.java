@@ -3,23 +3,23 @@ package org.example;
 import java.util.*;
 
 public class LargestNumber {
-        public String largestNumber(int[] nums) {
-            ArrayList<String> list = new ArrayList<>();
+    public String largestNumber(int[] numbers) {
+        ArrayList<String> stringArrayList = new ArrayList<>();
 
-            for (var i  : nums)
-                list.add(Integer.toString(i));
+        for (var number : numbers)
+            stringArrayList.add(Integer.toString(number));
 
-            Collections.sort(list, (a, b) -> (a + b).compareTo(b + a));
+        Collections.sort(stringArrayList, (a, b) -> (a + b).compareTo(b + a));
 
-            StringBuilder s = new StringBuilder();
+        StringBuilder resultBuilder = new StringBuilder();
 
-            for (int i = list.size() - 1; i >= 0; i--)
-                s.append(list.get(i));
+        for (int index = stringArrayList.size() - 1; index >= 0; index--)
+            resultBuilder.append(stringArrayList.get(index));
 
-            if (s.charAt(0) == '0')
-                return "0";
+        if (resultBuilder.charAt(0) == '0')
+            return "0";
 
-            return s.toString();
-        }
+        return resultBuilder.toString();
+    }
 }
 

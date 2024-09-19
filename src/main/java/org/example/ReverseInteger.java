@@ -1,17 +1,17 @@
 package org.example;
 
 public class ReverseInteger {
-    public int reverse(int x) {
+    public int reverse(int number) {
         // Initialize variables to store the reversed number and the current digit
         int reverse = 0;
         int remainder = 0;
 
         // Loop through each digit of the number until x becomes 0
-        while (x != 0) {
+        while (number != 0) {
             // Extract the last digit (remainder) of the number
-            remainder = x % 10;
+            remainder = number % 10;
             // Remove the last digit from x
-            x = x / 10;
+            number = number / 10;
 
             // Check if the reverse will overflow after multiplication
             // Integer.MAX_VALUE is 2147483647

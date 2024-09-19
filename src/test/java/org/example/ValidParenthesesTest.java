@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidParenthesesTest {
-   private  final  ValidParentheses validator=new ValidParentheses();
+   private  final  ValidParentheses testValidParenthesesWithPositiveTesting=new ValidParentheses();
     @Test
     public void testExample1() {
         String s = "()";
         boolean expected = true;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -18,7 +18,7 @@ public class ValidParenthesesTest {
     public void testExample2() {
         String s = "()[]{}";
         boolean expected = true;
-        boolean result = validator.isValid(s);
+        boolean result =testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -27,7 +27,7 @@ public class ValidParenthesesTest {
     public void testExample3() {
         String s = "(]";
         boolean expected = false;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -36,7 +36,7 @@ public class ValidParenthesesTest {
     public void testExample4() {
         String s = "([])";
         boolean expected = true;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -45,7 +45,7 @@ public class ValidParenthesesTest {
     public void testEmptyString() {
         String s = "";
         boolean expected = true;
-        boolean result = validator.isValid(s);
+        boolean result =testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -54,7 +54,7 @@ public class ValidParenthesesTest {
     public void testSingleOpeningBracket() {
         String s = "(";
         boolean expected = false;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -63,7 +63,7 @@ public class ValidParenthesesTest {
     public void testSingleClosingBracket() {
         String s = ")";
         boolean expected = false;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -72,7 +72,7 @@ public class ValidParenthesesTest {
     public void testMismatchedBrackets() {
         String s = "{[}]";
         boolean expected = false;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -81,7 +81,7 @@ public class ValidParenthesesTest {
     public void testNestedValidBrackets() {
         String s = "{{[[(())]]}}";
         boolean expected = true;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }
@@ -90,7 +90,7 @@ public class ValidParenthesesTest {
     public void testIncompleteBrackets() {
         String s = "([]";
         boolean expected = false;
-        boolean result = validator.isValid(s);
+        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
         assertEquals(expected, result);
     }

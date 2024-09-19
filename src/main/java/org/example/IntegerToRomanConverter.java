@@ -3,7 +3,7 @@ package org.example;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class IntegerToRoman {
+public class IntegerToRomanConverter {
 
     private static final Map<Integer, String> ROMAN_NUMERAL_MAPPINGS = new LinkedHashMap<>();
 
@@ -41,6 +41,8 @@ public class IntegerToRoman {
         // Convert the StringBuilder to a String and return it
         return constructedRomanStringBuilder.toString();
     }
+
+
 }
 
 
