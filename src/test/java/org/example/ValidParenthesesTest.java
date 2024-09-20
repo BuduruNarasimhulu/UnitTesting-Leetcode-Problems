@@ -1,97 +1,100 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidParenthesesTest {
-   private  final  ValidParentheses testValidParenthesesWithPositiveTesting=new ValidParentheses();
-    @Test
-    public void shouldReturnTrueForSimpleParentheses() {
-        String s = "()";
-        boolean expected = true;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
 
-        assertEquals(expected, result);
+    private final ValidParentheses validParenthesesChecker = new ValidParentheses();
+
+    @Test
+    public void returnsTrue_whenInputIsSimpleValidParentheses() {
+        String input = "()";
+        boolean expectedOutput = true;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
+
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void shouldReturnTrueForValidMultipleBrackets() {
-        String s = "()[]{}";
-        boolean expected = true;
-        boolean result =testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsTrue_whenInputContainsValidMultipleBrackets() {
+        String input = "()[]{}";
+        boolean expectedOutput = true;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void shouldReturnFalseForInvalidParentheses() {
-        String s = "(]";
-        boolean expected = false;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsFalse_whenInputContainsInvalidParentheses() {
+        String input = "(]";
+        boolean expectedOutput = false;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testShouldReturnValidParantheses() {
-        String s = "([])";
-        boolean expected = true;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsTrue_whenInputHasValidNestedParentheses() {
+        String input = "([])";
+        boolean expectedOutput = true;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testEmptyString() {
-        String s = "";
-        boolean expected = true;
-        boolean result =testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsTrue_whenInputIsAnEmptyString() {
+        String input = "";
+        boolean expectedOutput = true;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testSingleOpeningBracket() {
-        String s = "(";
-        boolean expected = false;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsFalse_whenInputIsASingleOpeningBracket() {
+        String input = "(";
+        boolean expectedOutput = false;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testSingleClosingBracket() {
-        String s = ")";
-        boolean expected = false;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsFalse_whenInputIsASingleClosingBracket() {
+        String input = ")";
+        boolean expectedOutput = false;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testMismatchedBrackets() {
-        String s = "{[}]";
-        boolean expected = false;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsFalse_whenInputContainsMismatchedBrackets() {
+        String input = "{[}]";
+        boolean expectedOutput = false;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testNestedValidBrackets() {
-        String s = "{{[[(())]]}}";
-        boolean expected = true;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsTrue_whenInputContainsNestedValidBrackets() {
+        String input = "{{[[(())]]}}";
+        boolean expectedOutput = true;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
-    public void testIncompleteBrackets() {
-        String s = "([]";
-        boolean expected = false;
-        boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
+    public void returnsFalse_whenInputHasIncompleteBrackets() {
+        String input = "([]";
+        boolean expectedOutput = false;
+        boolean actualOutput = validParenthesesChecker.isValid(input);
 
-        assertEquals(expected, result);
+        assertEquals(expectedOutput, actualOutput);
     }
 }
+

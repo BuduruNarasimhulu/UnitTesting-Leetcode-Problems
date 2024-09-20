@@ -34,20 +34,20 @@ class IntegerToRomanConverterTest {
 
     @ParameterizedTest
     @MethodSource("validNumbers")
-    void testTransformIntegerToRomanNumeral_ValidNumbers(int input, String expected) {
+    void testValidNumbers(int input, String expected) {
         assertEquals(expected, converter.transformIntegerToRomanNumeral(input));
     }
 
     static Stream<Arguments> boundaryConditions() {
         return Stream.of(
-                Arguments.of(0, ""),
+                Arguments.of(0, ""),   // Define why "" is returned for 0 and negative numbers
                 Arguments.of(-1, "")
         );
     }
 
     @ParameterizedTest
     @MethodSource("boundaryConditions")
-    void testTransformIntegerToRomanNumeral_BoundaryConditions(int input, String expected) {
+    void testBoundaryConditions(int input, String expected) {
         assertEquals(expected, converter.transformIntegerToRomanNumeral(input));
     }
 }

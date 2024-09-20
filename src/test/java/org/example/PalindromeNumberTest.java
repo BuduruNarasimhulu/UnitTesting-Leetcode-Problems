@@ -1,17 +1,25 @@
 package org.example;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-public class PalindromeNumberTest extends TestCase {
-     private final PalindromeNumber testPalindromeNumberWithPositiveTesting=new PalindromeNumber();
+public class PalindromeNumberTest {
 
-    public void testIsPalindrome_case1() {
-        assertTrue(testPalindromeNumberWithPositiveTesting.isPalindrome(121));
+    private final PalindromeNumber palindromeChecker = new PalindromeNumber();
+
+    @Test
+    public void returnsTrue_whenNumberIsPalindrome() {
+        assertTrue(palindromeChecker.isPalindrome(121));
     }
-    public void testIsPalindrome_case2() {
-        assertFalse(testPalindromeNumberWithPositiveTesting.isPalindrome(-121));
+
+    @Test
+    public void returnsFalse_whenNumberIsNegative() {
+        assertFalse(palindromeChecker.isPalindrome(-121));
     }
-    public void testIsPalindrome_case3() {
-       assertFalse(testPalindromeNumberWithPositiveTesting.isPalindrome(10));
+
+    @Test
+    public void returnsFalse_whenNumberIsNotPalindrome() {
+        assertFalse(palindromeChecker.isPalindrome(10));
     }
 }

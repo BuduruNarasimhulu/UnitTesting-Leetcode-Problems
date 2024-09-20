@@ -10,10 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FirstMissingPositiveTest {
 
-    private final FirstMissingPositive testToFirstMissingPositiveWithPositiveCaseOfTesting = new FirstMissingPositive();
+    // Rename to something more concise and descriptive
+    private final FirstMissingPositive testFirstMissingPositiveTest = new FirstMissingPositive();
 
     // Method to provide test cases
-    private static Stream<Arguments> provideTestCases() {
+    private static Stream<Arguments> testProvideTestCasesForFirstMissingPositive() {
         return Stream.of(
                 Arguments.of(new int[]{1, 2, 0}, 3),
                 Arguments.of(new int[]{3, 4, -1, 1}, 2),
@@ -22,13 +23,15 @@ public class FirstMissingPositiveTest {
                 Arguments.of(new int[]{2}, 1),
                 Arguments.of(new int[]{}, 1),
                 Arguments.of(new int[]{-1, -2, -3}, 1),
-                Arguments.of(new int[]{0},1)
+                Arguments.of(new int[]{0}, 1)
         );
     }
 
+
     @ParameterizedTest
-    @MethodSource("provideTestCases")
-    void testFirstMissingPositive(int[] input, int expected) {
-        assertEquals(expected, testToFirstMissingPositiveWithPositiveCaseOfTesting.firstMissingPositive(input));
+    @MethodSource("testProvideTestCasesForFirstMissingPositive")
+    void testFirstMissingPositiveWithVariousCases(int[] input, int expected) {
+        assertEquals(expected, testFirstMissingPositiveTest.firstMissingPositive(input));
     }
+
 }

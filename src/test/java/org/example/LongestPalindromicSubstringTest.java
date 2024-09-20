@@ -1,15 +1,19 @@
 package org.example;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-public class LongestPalindromicSubstringTest extends TestCase {
-    private final LongestPalindromicSubstring testLongestPalindromicSubstringWithPositiveTesting=new LongestPalindromicSubstring();
+public class LongestPalindromicSubstringTest {
 
-    public void testPalindrome_case1() {
-     assertEquals("bab",testLongestPalindromicSubstringWithPositiveTesting.longestPalindrome("babad"));
+    private final LongestPalindromicSubstring palindromeFinder = new LongestPalindromicSubstring();
+
+    @Test
+    public void returnsLongestPalindrome_whenInputContainsMultiplePalindromes() {
+        assertEquals("bab", palindromeFinder.longestPalindrome("babad"));
     }
-    public void testPalindrome_case2() {
-        assertEquals("bb",testLongestPalindromicSubstringWithPositiveTesting.longestPalindrome("cbbd"));
-    }
 
+    @Test
+    public void returnsLongestPalindrome_whenInputContainsEvenLengthPalindrome() {
+        assertEquals("bb", palindromeFinder.longestPalindrome("cbbd"));
+    }
 }

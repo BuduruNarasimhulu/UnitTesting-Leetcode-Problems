@@ -1,7 +1,7 @@
 package org.example;
 
 public class ReverseInteger {
-    public int reverse(int number) {
+    public static int reverse(int number) {
         // Initialize variables to store the reversed number and the current digit
         int reverse = 0;
         int remainder = 0;
@@ -36,5 +36,10 @@ public class ReverseInteger {
 
         // Return the reversed number
         return reverse;
+    }
+
+    public static void main(String[] args) {
+        int reverse = reverse(123);
+        System.out.printf("Reverse Number" + reverse);
     }
 }

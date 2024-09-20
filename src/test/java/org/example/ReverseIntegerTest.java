@@ -1,17 +1,24 @@
 package org.example;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReverseIntegerTest extends TestCase {
+public class ReverseIntegerTest {
 
-     private  final ReverseInteger test=new ReverseInteger();
-    public void testReverse_case1() {
-        assertEquals(321,test.reverse(123));
+    private final ReverseInteger reverseInteger = new ReverseInteger();
+
+    @Test
+    public void returnsReversedPositiveInteger_whenInputIsPositive() {
+        assertEquals(321, reverseInteger.reverse(123));
     }
-    public void testReverse_case2() {
-        assertEquals(-321,test.reverse(-123));
+
+    @Test
+    public void returnsReversedNegativeInteger_whenInputIsNegative() {
+        assertEquals(-321, reverseInteger.reverse(-123));
     }
-    public void testReverse_case3() {
-        assertEquals(21,test.reverse(120));
+
+    @Test
+    public void returnsReversedIntegerIgnoringTrailingZero_whenInputHasTrailingZero() {
+        assertEquals(21, reverseInteger.reverse(120));
     }
 }

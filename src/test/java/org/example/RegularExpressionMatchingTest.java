@@ -4,74 +4,56 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegularExpressionMatchingTest {
-    private  final  RegularExpressionMatching testRegularExpressionMatchingWithPositiveTesting=new RegularExpressionMatching();
+
+    private final RegularExpressionMatching regexMatcher = new RegularExpressionMatching();
+
     @Test
-    public void testExample1() {
+    public void returnsFalse_whenPatternDoesNotMatchSingleCharacter() {
         String s = "aa";
         String p = "a";
-        boolean expected = false;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertFalse(regexMatcher.isMatch(s, p));
     }
 
     @Test
-    public void testExample2() {
+    public void returnsTrue_whenPatternContainsAsteriskForMultipleCharacterMatch() {
         String s = "aa";
         String p = "a*";
-        boolean expected = true;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertTrue(regexMatcher.isMatch(s, p));
     }
 
     @Test
-    public void testExample3() {
+    public void returnsTrue_whenPatternIsDotAsteriskForAnyCharacterMatch() {
         String s = "ab";
         String p = ".*";
-        boolean expected = true;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertTrue(regexMatcher.isMatch(s, p));
     }
 
     @Test
-    public void testEmptyStringAndPattern() {
+    public void returnsTrue_whenBothStringAndPatternAreEmpty() {
         String s = "";
         String p = "";
-        boolean expected = true;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertTrue(regexMatcher.isMatch(s, p));
     }
 
     @Test
-    public void testEmptyStringWithAsteriskPattern() {
+    public void returnsTrue_whenPatternContainsAsteriskAndStringIsEmpty() {
         String s = "";
         String p = "a*";
-        boolean expected = true;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertTrue(regexMatcher.isMatch(s, p));
     }
 
     @Test
-    public void testComplexPattern() {
+    public void returnsTrue_whenPatternMatchesComplexInput() {
         String s = "aab";
         String p = "c*a*b";
-        boolean expected = true;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertTrue(regexMatcher.isMatch(s, p));
     }
 
     @Test
-    public void testNoMatch() {
+    public void returnsFalse_whenPatternDoesNotMatchComplexInput() {
         String s = "mississippi";
         String p = "mis*is*p*.";
-        boolean expected = false;
-        boolean result = testRegularExpressionMatchingWithPositiveTesting.isMatch(s, p);
-
-        assertEquals(expected, result);
+        assertFalse(regexMatcher.isMatch(s, p));
     }
 }
+
