@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ValidParenthesesTest {
    private  final  ValidParentheses testValidParenthesesWithPositiveTesting=new ValidParentheses();
     @Test
-    public void testExample1() {
+    public void shouldReturnTrueForSimpleParentheses() {
         String s = "()";
         boolean expected = true;
         boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
@@ -15,7 +15,7 @@ public class ValidParenthesesTest {
     }
 
     @Test
-    public void testExample2() {
+    public void shouldReturnTrueForValidMultipleBrackets() {
         String s = "()[]{}";
         boolean expected = true;
         boolean result =testValidParenthesesWithPositiveTesting.isValid(s);
@@ -24,7 +24,7 @@ public class ValidParenthesesTest {
     }
 
     @Test
-    public void testExample3() {
+    public void shouldReturnFalseForInvalidParentheses() {
         String s = "(]";
         boolean expected = false;
         boolean result = testValidParenthesesWithPositiveTesting.isValid(s);
@@ -33,7 +33,7 @@ public class ValidParenthesesTest {
     }
 
     @Test
-    public void testExample4() {
+    public void testShouldReturnValidParantheses() {
         String s = "([])";
         boolean expected = true;
         boolean result = testValidParenthesesWithPositiveTesting.isValid(s);

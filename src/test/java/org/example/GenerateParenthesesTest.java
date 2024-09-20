@@ -38,7 +38,7 @@ public class GenerateParenthesesTest {
     }
 
     @Test
-    public void testNTwo() {
+    public void testNthTwo() {
         int n = 2;
         List<String> expected = List.of("(())", "()()");
         List<String> result = testGenerateParenthesesWithPositiveCaseOfTesting.generateParenthesis(n);
@@ -48,7 +48,7 @@ public class GenerateParenthesesTest {
     }
 
     @Test
-    public void testNLarge() {
+    public void testNthLarge() {
         int n = 4;
         List<String> result = testGenerateParenthesesWithPositiveCaseOfTesting.generateParenthesis(n);
 
