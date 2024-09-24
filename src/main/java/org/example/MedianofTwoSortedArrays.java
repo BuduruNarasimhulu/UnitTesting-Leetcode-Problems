@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class MedianofTwoSortedArrays {
     public double findMedianSortedArrays(int[] firstArray, int[] secondArray) {
+        if (firstArray == null || secondArray == null) {
+            throw new IllegalArgumentException("Input arrays cannot be null");
+        }
+        if (firstArray.length == 0 && secondArray.length == 0) {
+            throw new IllegalArgumentException("Both arrays are empty");
+        }
         int firstArrayLength = firstArray.length;
         int secondArrayLength = secondArray.length;
         int[] mergedArray= new int[firstArrayLength + secondArrayLength];

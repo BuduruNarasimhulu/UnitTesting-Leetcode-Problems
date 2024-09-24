@@ -1,9 +1,22 @@
 package org.example;
 
+import java.security.InvalidParameterException;
+
 public class LongestPalindromicSubstring {
-    public String longestPalindrome(String inputString) {
-        if (inputString.length() <= 1) {
-            return inputString;
+    public String longestPalindrome(String inputString) throws InvalidParameterException {
+        // Check for null input
+        if (inputString == null) {
+            throw new IllegalArgumentException("Input string cannot be null");
+        }
+
+        // Handle empty string case
+        if (inputString.isEmpty()) {
+            return ""; // Return an empty string if input is empty
+        }
+
+        // Handle single character case
+        if (inputString.length() == 1) {
+            return inputString; // Return the input string if it's a single character
         }
 
         int maxLength = 1;

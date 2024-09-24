@@ -5,6 +5,10 @@ import java.util.*;
 public class GenerateParentheses {
 
     public List<String> generateParenthesis(int pairCount) {
+        // Check for negative input
+        if (pairCount < 0) {
+            return Collections.emptyList(); // Return an empty list for negative input
+        }
         // List to store the final result of valid parenthesis combinations
         List<String> validCombinations = new ArrayList<>();
         // List to hold the current combination of parentheses being built

@@ -1,6 +1,7 @@
 package org.example;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -10,6 +11,7 @@ public class PalindromeNumberTest {
 
     @Test
     public void returnsTrue_whenNumberIsPalindrome() {
+
         assertTrue(palindromeChecker.isPalindrome(121));
     }
 
