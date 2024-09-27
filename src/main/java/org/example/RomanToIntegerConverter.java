@@ -1,15 +1,33 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class RomanToIntegerConverter {
+// Parent InvalidInputException class
+class InvalidInputException extends RuntimeException {
+    public InvalidInputException(String message) {
+        super(message);
+    }
+}
 
-    private static final Map<Character, Integer> ROMAN_VALUE_MAP;
+// invalid character(Non-Roman Values) for custom Exception
+class InvalidRomanCharacterException extends InvalidInputException {
+    public InvalidRomanCharacterException(char character) {
+        super("Invalid character encountered in Roman numeral: " + character);
+    }
+}
 
-    // Static block to initialize the Roman numeral mappings
+// empty or null characters for custom exception
+class EmptyRomanNumeralException extends InvalidInputException {
+    public EmptyRomanNumeralException() {
+        super("Roman numeral cannot be null or empty.");
+    }
+}
+//values provider class
+class RomanValueProvider {
+    private static final Map<Character, Integer> ROMAN_VALUE_MAP = new HashMap<>();
+
+
     static {
-        ROMAN_VALUE_MAP = new HashMap<>();
         ROMAN_VALUE_MAP.put('I', 1);
         ROMAN_VALUE_MAP.put('V', 5);
         ROMAN_VALUE_MAP.put('X', 10);
@@ -19,43 +37,88 @@ public class RomanToIntegerConverter {
         ROMAN_VALUE_MAP.put('M', 1000);
     }
 
+    // Retrieve value for a given Roman character
+    public static int getValue(char romanCharacter) {
+        if (!ROMAN_VALUE_MAP.containsKey(romanCharacter)) {
+            throw new InvalidRomanCharacterException(romanCharacter);
+        }
+        return ROMAN_VALUE_MAP.get(romanCharacter);
+    }
+}
+//Main class(conversion Logic)
+public class RomanToIntegerConverter {
+
+    private final RomanValueProvider valueProvider;
+
+    public RomanToIntegerConverter() {
+        this.valueProvider = new RomanValueProvider();
+    }
+
     public int convertRomanToInteger(String romanNumeral) {
-        // Handle edge cases: if the input string is null or empty, return 0
-        if (isInvalidRomanNumeral(romanNumeral)) {
-            return 0;
+
+        if (romanNumeral == null || romanNumeral.isEmpty()) {
+            throw new EmptyRomanNumeralException();
         }
 
         int integerResult = 0;
         int length = romanNumeral.length();
 
-        // Loop through each character in the string
+
         for (int index = 0; index < length; index++) {
-            int currentValue = ROMAN_VALUE_MAP.get(romanNumeral.charAt(index));
+            char currentChar = romanNumeral.charAt(index);
 
-            // If the current character is not the last one, compare it with the next character
+
+            int currentValue = valueProvider.getValue(currentChar);
+
+
             if (index < length - 1) {
-                int nextValue = ROMAN_VALUE_MAP.get(romanNumeral.charAt(index + 1));
+                char nextChar = romanNumeral.charAt(index + 1);
+                int nextValue = valueProvider.getValue(nextChar);
 
-                // If the current value is less than the next value, subtract it from the result
-                // This handles cases like IV (4) and IX (9)
+
                 if (currentValue < nextValue) {
                     integerResult -= currentValue;
                 } else {
                     integerResult += currentValue;
                 }
             } else {
-                // If the current character is the last one, simply add its value to the result
+
                 integerResult += currentValue;
             }
         }
 
-        // Return the final result, which is the integer representation of the Roman numeral
+
         return integerResult;
     }
 
-    private boolean isInvalidRomanNumeral(String romanNumeral) {
-        return romanNumeral == null || romanNumeral.isEmpty();
+    // Main method
+    public static void main(String[] args) {
+        RomanToIntegerConverter converter = new RomanToIntegerConverter();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Roman Numeral Converter!");
+
+
+        while (true) {
+            System.out.print("Roman Numeral: ");
+            String input = scanner.nextLine().trim();
+            try {
+
+                int result = converter.convertRomanToInteger(input);
+                System.out.println("The integer value of " + input + " is: " + result);
+            } catch (EmptyRomanNumeralException e) {
+
+                System.err.println("Error: " + e.getMessage());
+            } catch (InvalidRomanCharacterException e) {
+
+                System.err.println("Error: " + e.getMessage());
+            } catch (InvalidInputException e) {
+
+                System.err.println("Conversion error: " + e.getMessage());
+            }
+        }
+
+
     }
+
 }
-
-
