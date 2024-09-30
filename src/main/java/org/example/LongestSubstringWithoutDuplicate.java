@@ -32,8 +32,6 @@ public class LongestSubstringWithoutDuplicate {
 
     }
 
-    public static void main(String[] args) {
 
-    }
 
 }

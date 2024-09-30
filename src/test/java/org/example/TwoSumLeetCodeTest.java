@@ -1,32 +1,37 @@
 package org.example;
 
-import junit.framework.TestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import static org.junit.Assert.assertArrayEquals;
+public class TwoSumLeetCodeTest {
 
-public class TwoSumLeetCodeTest extends TestCase {
-
-    public void testTwoSum_case1() {
-        int[] arrayOne = {2, 7, 11, 15};
+    @Test
+    public void returnsIndicesOfTwoNumbers_whenTargetIsSumOfTwoElements_case1() {
+        int[] inputArray = {2, 7, 11, 15};
         int target = 9;
-        int[] expected = {0, 1};
-        int[] result = TwoSumLeetCode.twoSum(arrayOne, target);
-        assertArrayEquals(expected, result);
-    }
-    public void testTwoSum_case2(){
-        int[] arrayTwo = {3, 2, 4};
-        int target = 6;
-        int[] expected = {1, 2};
-        int[] result = TwoSumLeetCode.twoSum(arrayTwo, target);
-        assertArrayEquals(expected, result);
-    }
-    public void testTwoSum_case3(){
-        int[] arrayThree = {3, 3};
-        int target = 6;
-        int[] expected = {0, 1};
-        int[] result = TwoSumLeetCode.twoSum(arrayThree, target);
-        assertArrayEquals(expected, result);
+        int[] expectedIndices = {0, 1};
+        int[] actualIndices = TwoSumLeetCode.twoSum(inputArray, target);
+
+        assertArrayEquals(expectedIndices, actualIndices);
     }
 
+    @Test
+    public void returnsIndicesOfTwoNumbers_whenTargetIsSumOfTwoElements_case2() {
+        int[] inputArray = {3, 2, 4};
+        int target = 6;
+        int[] expectedIndices = {1, 2};
+        int[] actualIndices = TwoSumLeetCode.twoSum(inputArray, target);
+
+        assertArrayEquals(expectedIndices, actualIndices);
+    }
+
+    @Test
+    public void returnsIndicesOfTwoNumbers_whenTargetIsSumOfIdenticalElements() {
+        int[] inputArray = {3, 3};
+        int target = 6;
+        int[] expectedIndices = {0, 1};
+        int[] actualIndices = TwoSumLeetCode.twoSum(inputArray, target);
+
+        assertArrayEquals(expectedIndices, actualIndices);
+    }
 }

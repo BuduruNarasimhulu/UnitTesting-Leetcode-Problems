@@ -1,19 +1,23 @@
 package org.example;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import junit.framework.TestCase;
+public class LongestSubstringWithoutDuplicateTest {
 
-public class LongestSubstringWithoutDuplicateTest extends TestCase {
-    private  final  LongestSubstringWithoutDuplicate test=new LongestSubstringWithoutDuplicate();
+    private final LongestSubstringWithoutDuplicate substringFinder = new LongestSubstringWithoutDuplicate();
 
-    public void testLengthOfLongestSubstring_case1() {
-        assertEquals(3,test.lengthOfLongestSubstring("abcabcbb"));
-    }
-    public void testLengthOfLongestSubstring_case2(){
-        assertEquals(1,test.lengthOfLongestSubstring("bbbbb"));
-    }
-    public void testLengthOfLongestSubstring_case3(){
-        assertEquals(3,test.lengthOfLongestSubstring("pwwkew"));
-
+    @Test
+    public void returnsLengthOfLongestSubstring_whenInputHasRepeatedCharacters() {
+        assertEquals(3, substringFinder.lengthOfLongestSubstring("abcabcbb"));
     }
 
+    @Test
+    public void returnsLengthOfLongestSubstring_whenInputHasAllSameCharacters() {
+        assertEquals(1, substringFinder.lengthOfLongestSubstring("bbbbb"));
+    }
+
+    @Test
+    public void returnsLengthOfLongestSubstring_whenInputHasMixedCharacters() {
+        assertEquals(3, substringFinder.lengthOfLongestSubstring("pwwkew"));
+    }
 }
