@@ -1,69 +1,129 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.stream.Stream;
 
 class RomanToIntegerConverterTest {
 
-    private final RomanToIntegerConverter converter = new RomanToIntegerConverter();
+    RomanToIntegerConverter converter = new RomanToIntegerConverter();
 
-    static Stream<Arguments> validRomanNumerals() {
-        return Stream.of(
-                Arguments.of("I", 1),
-                Arguments.of("IV", 4),
-                Arguments.of("V", 5),
-                Arguments.of("IX", 9),
-                Arguments.of("X", 10),
-                Arguments.of("XL", 40),
-                Arguments.of("L", 50),
-                Arguments.of("XC", 90),
-                Arguments.of("C", 100),
-                Arguments.of("CD", 400),
-                Arguments.of("D", 500),
-                Arguments.of("M", 1000),
-                Arguments.of("LVIII", 58),
-                Arguments.of("MCMXCIV", 1994)
-        );
+    // Test valid Roman numerals (simple cases)
+    @Test
+    void test_ValidSimpleRomanNumerals_returnValidIntegerValues() {
+        assertEquals(1, converter.convertRomanToInteger("I"));
+        assertEquals(4, converter.convertRomanToInteger("IV"));
+        assertEquals(5, converter.convertRomanToInteger("V"));
+        assertEquals(9, converter.convertRomanToInteger("IX"));
+        assertEquals(10, converter.convertRomanToInteger("X"));
+        assertEquals(49, converter.convertRomanToInteger("XLIX"));
+        assertEquals(50, converter.convertRomanToInteger("L"));
+        assertEquals(99, converter.convertRomanToInteger("XCIX"));
+        assertEquals(100, converter.convertRomanToInteger("C"));
+        assertEquals(499, converter.convertRomanToInteger("CDXCIX"));
+        assertEquals(500, converter.convertRomanToInteger("D"));
+        assertEquals(999, converter.convertRomanToInteger("CMXCIX"));
+        assertEquals(1000, converter.convertRomanToInteger("M"));
     }
 
-    @ParameterizedTest
-    @MethodSource("validRomanNumerals")
-    void testConvertRomanToInteger_ValidRomanNumerals(String input, int expected) {
-        assertEquals(expected, converter.convertRomanToInteger(input));
+    // Test valid complex Roman numerals
+    @Test
+    void test_ValidComplexRomanNumerals_returnIntegerValues() {
+        assertEquals(1994, converter.convertRomanToInteger("MCMXCIV"));  // 1000+900+90+4
+        assertEquals(58, converter.convertRomanToInteger("LVIII"));  // 50+5+3
+        assertEquals(3999, converter.convertRomanToInteger("MMMCMXCIX"));  // Highest possible valid Roman numeral
     }
 
-    static Stream<Arguments> invalidInputs() {
-        return Stream.of(
-                Arguments.of(null, 0),
-                Arguments.of("", 0)
-        );
+    // Test invalid Roman numeral - empty string or null
+    @Test
+    void test_EmptyOrNullRomanNumeral_throwsEmptyRomanNumeralException() {
+        assertThrows(EmptyRomanNumeralException.class, () -> {
+            converter.convertRomanToInteger("");
+        });
+
+        assertThrows(EmptyRomanNumeralException.class, () -> {
+            converter.convertRomanToInteger(null);
+        });
+
     }
 
-    @ParameterizedTest
-    @MethodSource("invalidInputs")
-    void testConvertRomanToInteger_InvalidInputs(String input, int expected) {
-        assertEquals(expected, converter.convertRomanToInteger(input));
+    // Test invalid characters
+    @Test
+    void test_InvalidRomanCharacter_throwsInvalidRomanCharacterException() {
+        assertThrows(InvalidRomanCharacterException.class,()->{
+           converter.convertRomanToInteger("RAMA");
+        });
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("ABC");
+        });
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("IIIA");
+        });
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("MXD2");
+        });
     }
 
-    static Stream<Arguments> continuousNumerals() {
-        return Stream.of(
-                Arguments.of("III", 3),
-                Arguments.of("VII", 7),
-                Arguments.of("VIII", 8),
-                Arguments.of("XI", 11),
-                Arguments.of("XII", 12)
-        );
+    // Test invalid repetition of Roman numerals (e.g., "IIII", "VV", etc.)
+    @Test
+    void test_InvalidRepetitionOfNumerals_throwsInvalidRomanCharacterException() {
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("IIII");
+        });
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("VV");
+        });
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("XXXX");
+        });
     }
 
-    @ParameterizedTest
-    @MethodSource("continuousNumerals")
-    void testConvertRomanToInteger_ContinuousNumerals(String input, int expected) {
-        assertEquals(expected, converter.convertRomanToInteger(input));
+
+    // Test lower-case Roman numerals (e.g., "mcmxciv") and integer values (e.g.,"1234556")
+    @Test
+    void Test_LowerCaseRomanNumerals_throwsInvalidInputExceptions() {
+        assertThrows(InvalidInputException.class, () -> {
+            converter.convertRomanToInteger("mcmxciv");
+        }, "Lowercase Roman numerals should throw InvalidInputException");
+
+        assertThrows(InvalidInputException.class, () -> {
+            converter.convertRomanToInteger("lviii");
+        }, "Lowercase Roman numerals should throw InvalidInputException");
+
+        assertThrows(InvalidInputException.class, () -> {
+            converter.convertRomanToInteger("-12345678901");
+        }, " Negative integers values should throw InvalidInputException");
+
+        assertThrows(InvalidInputException.class, () -> {
+            converter.convertRomanToInteger("12345678901");
+        }, "Positive integer values should throw InvalidInputException");
+
+
+    }
+
+    // Test mixed valid and invalid characters
+    @Test
+    void test_MixedValidAndInvalidCharacters_throwsInvalidRomanCharacterException() {
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("MCMLXIV!");  // Invalid character '!'
+        });
+        assertThrows(InvalidRomanCharacterException.class, () -> {
+            converter.convertRomanToInteger("X1X");  // Invalid character '1'
+        });
+    }
+
+    // Test boundary case: smallest valid Roman numeral
+    @Test
+    void test_SmallestValidRomanNumeral_returnSmallestIntegerValue() {
+        assertEquals(1, converter.convertRomanToInteger("I"));
+
+    }
+
+    // Test boundary case: largest valid Roman numeral
+    @Test
+    void test_LargestValidRomanNumeral_returnLargestIntegerValue() {
+        assertEquals(4000, converter.convertRomanToInteger("MMMCMXCX"));// 3999 is the largest standard Roman numeral
+
     }
 }
+
 
